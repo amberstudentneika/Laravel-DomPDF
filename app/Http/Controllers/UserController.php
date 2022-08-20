@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-
+use Carbon\Carbon;
 class UserController extends Controller
 {
   
@@ -15,7 +15,10 @@ class UserController extends Controller
         ];
            
         $pdf = PDF::loadView('pdf/file', compact('data'))->setOptions(['defaultFont' => 'sans-serif']);
-     
-        return $pdf->download('tutsmake.pdf');  
+     $date = date("F jS  Y h:i:s A");
+    //  implode(" ",$date);
+     $name='tNPS Report '.$date.".pdf";
+    //  dd($date);
+        return $pdf->download($name);  
     }
 }
